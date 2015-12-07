@@ -1,4 +1,5 @@
 local sti = require "Simple-Tiled-Implementation"
+local gamera =  require 'gamera.gamera'
 gamestate = {}
 debug = true
 zz = {}
@@ -29,15 +30,23 @@ function findSolidTiles(map)
 end
 function love.load()
 	gamestate.map = sti.new("map.lua")
+	  gamestate.cam = gamera.new(0,0,2000,2000)
+i = 0
   findSolidTiles(gamestate.map)
 end
 
 function love.update(dt)
-	
+	gamestate.cam:setPosition(400+i,200)
+	i = i + dt*60
 end
 
 function love.draw(dt)
-	gamestate.map:draw()
+	gamestate.cam:draw(function(l,t,w,h)
+gamestate.map:draw()
+end)
+	   love.graphics.print("Current FPS: "..tostring(love.timer.getFPS( )), 10, 10)
+
+	
 end
 function love.threaderror(thread, errorstr)
   print("Thread error!\n"..errorstr)
