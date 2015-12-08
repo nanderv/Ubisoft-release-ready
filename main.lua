@@ -1,5 +1,6 @@
 local sti = require "Simple-Tiled-Implementation"
 local gamera =  require 'gamera.gamera'
+local bump = require 'bump.bump'
 gamestate = {}
 debug = true
 zz = {}
@@ -33,33 +34,42 @@ function love.load()
   gamestate.map = sti.new("map.lua")
     gamestate.cam = gamera.new(0,-100,2000,2000)
 i = 0
-  gamestate.me={x=0,y=0}
-
+gamestate.world = bump.newWorld()
+  gamestate.me={x=420,y=320}
+  gamestate.n_blocks = 0
+  gamestate.blocks = {}
+  gamestate.me.img =  love.graphics.newImage( "character.png" )
+  gamestate.me.obj = gamestate.world:add(gamestate.me,gamestate.me.x,gamestate.me.y,32,32)
   findSolidTiles(gamestate.map)
 end
 
 function love.update(dt)
-  gamestate.cam:setPosition(400+gamestate.me.x,300+gamestate.me.y)
+  gamestate.cam:setPosition(gamestate.me.obj.x,gamestate.me.obj.y)
+  local dx = 0
+  local dy = 0
   if love.keyboard.isDown("left") then
-                gamestate.me.x = gamestate.me.x - dt*60
+                dx = dx  - dt*60
               end
                 if love.keyboard.isDown("right") then
-                gamestate.me.x = gamestate.me.x + dt*60
+                dx = dx  + dt*60
               end
 
 if love.keyboard.isDown("up") then
 
-              gamestate.me.y = gamestate.me.y + dt*60
+              dy = dy  - dt*60
         end
         if love.keyboard.isDown("down") then
 
-              gamestate.me.y = gamestate.me.y - dt*60
+          dy = dy  + dt*60
         end
+        gamestate.me.x, gamestate.me.y, cols, len = gamestate.world:move(gamestate.me.obj,gamestate.me.x+dx,gamestate.me.y+dy)
+   
 end
 
 function love.draw(dt)
   gamestate.cam:draw(function(l,t,w,h)
 gamestate.map:draw()
+ love.graphics.draw( gamestate.me.img,gamestate.me.obj.x, gamestate.me.obj.y )
 end)
      love.graphics.print("Current FPS: "..tostring(love.timer.getFPS( )), 10, 10)
 
