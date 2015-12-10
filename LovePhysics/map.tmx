@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="100" height="100" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="Castle" tilewidth="32" tileheight="32">
+  <image source="Castle.png" width="512" height="512"/>
+ </tileset>
+ <layer name="Tile Layer 2" width="100" height="100">
+  <data encoding="base64" compression="zlib">
+   eJzt0bENgDAMRcHsv1eYBJgAqEmJEFKocJDvpNdb/qUA5FMvEc8e46jFHpHu/39qCrsulzdb2ONb9hjL3Fo6rWHX5bO19k5H2HUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA8E8nunoyFQ==
+  </data>
+ </layer>
+ <layer name="Tile Layer 1" width="100" height="100">
+  <data encoding="base64" compression="zlib">
+   eJzt0bENgDAUQ8EMBUwATBAQI7D/BHgCfpMqupNe586tAcznKVrSmrZixxjVH3s60lnsGKP6o6cr3en9CQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGb1ASfAElY=
+  </data>
+ </layer>
+ <layer name="collision" width="100" height="100">
+  <data encoding="base64" compression="zlib">
+   eJztw7EJAAAIA7Di/0f7RCdNIAkA8MmUAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAwFULckMAJQ==
+  </data>
+ </layer>
+</map>

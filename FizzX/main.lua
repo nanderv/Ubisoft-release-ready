@@ -64,7 +64,8 @@ i = 0
 end
 
 function love.update(dt)
-    
+      dt = math.min(dt,0.7)
+
 TEsound.cleanup()
   if love.keyboard.isDown("left") then
                 gamestate.me.dx = gamestate.me.dx-12
